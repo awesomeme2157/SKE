@@ -13,7 +13,6 @@ export type Product = {
   range: string[];
   applications: string[];
   specifications?: { label: string; value: string }[];
-  manufacturerUrl?: string;
 };
 
 export const products: Product[] = [
@@ -47,8 +46,6 @@ export const products: Product[] = [
       "Swiss compact spinning technology with mechanical yarn compacting and energy-efficient GreenCompact systems.",
     range: ["GreenCompact systems"],
     applications: ["Yarn compacting"],
-    manufacturerUrl:
-      "https://www.swisstextilemachinery.ch/our-members/rotorcraft-ag",
   },
   {
     name: "Jumac",
@@ -61,7 +58,6 @@ export const products: Product[] = [
       "Sliver collection and handling",
       "Movement between textile production processes",
     ],
-    manufacturerUrl: "https://www.jumaccans.com/product/spinning-cans/",
   },
   {
     name: "Skaat",
@@ -77,7 +73,6 @@ export const products: Product[] = [
       "Fancy yarn development",
       "Yarn effects and drafting applications",
     ],
-    manufacturerUrl: "https://www.skaatindia.com/products.html",
   },
   {
     name: "Sagotharen",
@@ -94,7 +89,6 @@ export const products: Product[] = [
       "Spindle drive applications",
       "Tape replacement and joining",
     ],
-    manufacturerUrl: "https://www.sagotharen.com/products.html",
   },
   {
     name: "Saurer",
@@ -112,7 +106,6 @@ export const products: Product[] = [
       "Textile machinery maintenance",
       "Drafting and component upgrades",
     ],
-    manufacturerUrl: "https://saurer.com/en",
   },
   {
     name: "Wishark & Brujas",
@@ -149,7 +142,6 @@ export const products: Product[] = [
       "Electrical and electronic troubleshooting",
       "Machinery repair and service",
     ],
-    manufacturerUrl: "https://www.jrelectronicsandservices.com/",
   },
   {
     name: "Kanai",
@@ -158,10 +150,8 @@ export const products: Product[] = [
     description: "Rings and ring travellers.",
     range: ["Rings and ring travellers"],
     applications: [
-      "For improved operating speed and performance in ring spinning.",
+      "Used across textile spinning mills for cotton, synthetic fibers, and blended yarns.",
     ],
-    manufacturerUrl:
-      "https://www.kanaijuyo.co.jp/english/business/textilemacinery/",
   },
   {
     name: "AGMA",
@@ -173,7 +163,6 @@ export const products: Product[] = [
       "Cotton, viscose, and blended-fibre processing",
       "Drafting component selection",
     ],
-    manufacturerUrl: "https://agmaproducts.com/our-products/",
   },
   {
     name: "Basant Fibertek",
@@ -188,7 +177,6 @@ export const products: Product[] = [
       "Open end rotors and opening rollers",
     ],
     applications: ["Fibre preparation"],
-    manufacturerUrl: "https://www.bwipins.com/",
   },
   {
     name: "Fiberplus",
@@ -213,6 +201,5 @@ export const products: Product[] = [
       "Yarn winding and handling",
       "Yarn dyeing and package handling",
     ],
-    manufacturerUrl: "https://www.whiteplast.com/yarncarriers",
   },
 ];

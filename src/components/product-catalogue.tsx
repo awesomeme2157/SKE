@@ -41,7 +41,6 @@ export function ProductCatalogue() {
                     </div>
                     {product.specifications && <div className="product-specifications"><table><caption>Manufacturer reference — polyester spindle tapes</caption><tbody>{product.specifications.map((specification) => <tr key={specification.label}><th scope="row">{specification.label}</th><td>{specification.value}</td></tr>)}</tbody></table></div>}
                     <p className="product-availability">Contact our team to confirm the suitable model, specifications, and availability.</p>
-                    {product.manufacturerUrl && <a className="manufacturer-link" href={product.manufacturerUrl} target="_blank" rel="noopener noreferrer">Manufacturer information <span className="sr-only">for {product.name} (opens in a new tab)</span><span aria-hidden="true">↗</span></a>}
                   </div>
                 </details>
                 <a className="product-enquiry" href="#contact" onClick={() => selectProduct(product.name)} aria-label={`Enquire about ${product.name}`}>{product.category === "Services" ? "Enquire about a service" : "Enquire about this product"}<span aria-hidden="true">↗</span></a>
