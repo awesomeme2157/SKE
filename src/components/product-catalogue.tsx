@@ -5,7 +5,7 @@ import { useState } from "react";
 import { products, type ProductCategory } from "@/data/products";
 import { useEnquiry } from "@/components/enquiry-provider";
 
-const categories: ("All products" | ProductCategory)[] = ["All products", "Systems", "Components", "Material handling", "Services", "Product enquiries"];
+const categories: ("All products" | ProductCategory)[] = ["All products", "Systems", "Components", "Spares", "Material handling", "Services"];
 
 export function ProductCatalogue() {
   const [category, setCategory] = useState<(typeof categories)[number]>("All products");
