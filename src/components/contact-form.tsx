@@ -90,7 +90,7 @@ export function ContactForm() {
                 <p>Radha Krishnna Koshti Wada,<br />A/P Kabnur, Ichalkaranji – 416115.<br />Dist. Kolhapur, Maharashtra, India.</p>
                 <div className="office-links">
                   <p><span>Email</span><a href="mailto:slmkabin@yahoo.co.in">slmkabin@yahoo.co.in</a><a href="mailto:skesanjay9@gmail.com">skesanjay9@gmail.com</a></p>
-                  <p><span>Mobile</span><a href="tel:+919881552345">(+91) 9881552345</a><a href="tel:+919456085555">(+91) 9456085555</a></p>
+                  <p><span>Mobile</span><a href="tel:+919881552345">(+91) 9881552345</a><a href="tel:+919456085555">(+91) 9456085555</a><a href="tel:+917972090954">(+91) 7972090954</a></p>
                 </div>
               </address>
             </section>

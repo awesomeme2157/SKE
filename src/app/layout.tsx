@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { ScrollEffects } from "@/components/scroll-effects";
 import localFont from "next/font/local";
 import "./globals.css";
+import "./visual-refresh.css";
 
 const bodyFont = localFont({ src: "./fonts/dm_sans_latin.woff2", variable: "--font-body", weight: "400 700", display: "swap" });
 const headingFont = localFont({ src: "./fonts/manrope_latin.woff2", variable: "--font-heading", weight: "400 700", display: "swap" });
