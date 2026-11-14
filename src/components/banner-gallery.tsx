@@ -17,7 +17,11 @@ export function BannerGallery() {
   return (
     <div className="banner-gallery" role="region" aria-roledescription="carousel" aria-label="Textile products and systems">
       <div className="banner-image">
-        <Image src={`/media/banners/${banner.src}`} alt={banner.alt} width={3200} height={1540} sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1244px) 55vw, 620px" preload={selected === 0} />
+        {banners.map((item, index) => (
+          <div key={item.src} className={`banner-slide${selected === index ? " is-active" : ""}`} aria-hidden={selected !== index}>
+            <Image src={`/media/banners/${item.src}`} alt={item.alt} width={3200} height={1540} sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1244px) 55vw, 620px" preload={index === 0} />
+          </div>
+        ))}
       </div>
       <div className="banner-controls">
         <p aria-live="polite" aria-atomic="true"><span className="banner-count">0{selected + 1} / 04</span>{banner.caption}</p>

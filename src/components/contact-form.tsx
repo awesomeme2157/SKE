@@ -47,13 +47,13 @@ export function ContactForm() {
   return (
     <section className="contact-section" id="contact" aria-labelledby="contact-title">
       <div className="site-container">
-        <div className="contact-heading">
+        <div className="contact-heading" data-reveal>
           <p className="eyebrow">Let’s work together</p>
           <h2 id="contact-title">Get in touch.</h2>
           <p>Let’s find the right solution for your textile business. Send an enquiry or speak with our team directly.</p>
         </div>
         <div className="contact-inner">
-          <form className="enquiry-form" method="post" action="/api/enquiry" onSubmit={handleSubmit} aria-label="Product and service enquiry" aria-busy={pending}>
+          <form className="enquiry-form" method="post" action="/api/enquiry" onSubmit={handleSubmit} aria-label="Product and service enquiry" aria-busy={pending} data-reveal>
             <div className="form-heading">
               <h3>Send an enquiry</h3>
               <p className="form-note">Tell us a little about what you need. Fields marked * are required.</p>
@@ -79,7 +79,7 @@ export function ContactForm() {
             <noscript><p>Please enable JavaScript to use this form, email <a href="mailto:skesanjay9@gmail.com">skesanjay9@gmail.com</a>, or call <a href="tel:+919881552345">+91 98815 52345</a>.</p></noscript>
           </form>
           <div className="office-list" role="group" aria-label="Our offices">
-            <section className="office-details" aria-labelledby="head-office-title">
+            <section className="office-details" aria-labelledby="head-office-title" data-reveal>
               <h3 id="head-office-title">Head Office</h3>
               <address>
                 <p>“Radha-Krishna”, Koshti Wada,<br />A/P Kabnur, Ichalkaranji – 416115.<br />Dist. Kolhapur, Maharashtra, India.</p>
@@ -89,7 +89,7 @@ export function ContactForm() {
                 </div>
               </address>
             </section>
-            <section className="office-details" aria-labelledby="branch-office-title">
+            <section className="office-details" aria-labelledby="branch-office-title" data-reveal>
               <h3 id="branch-office-title">Branch Office</h3>
               <address>
                 <p>CS No. 373/2, Mahalaxmi Residency,<br />Flat No. 403, E Ward, Ambai Defence Colony,<br />Near CSIBER Chowk, Kolhapur – 416005.<br />Maharashtra, India.</p>

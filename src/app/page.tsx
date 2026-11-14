@@ -21,13 +21,13 @@ export default function Home() {
       </section>
       <section className="products-section" id="products" aria-labelledby="products-title">
         <div className="site-container">
-          <div className="section-heading">
+          <div className="section-heading" data-reveal>
             <p className="eyebrow">What we offer</p>
             <h2 id="products-title">Solutions for the textile industry.</h2>
           </div>
           <div className="product-grid">
             {products.map((product) => (
-              <article key={product.image} className="product-card">
+              <article key={product.image} className="product-card" data-reveal>
                 <div className="product-image"><Image src={`/media/products/${product.image}`} alt={`${product.name} brand and product artwork`} width={1920} height={1920} sizes="(max-width: 540px) calc(100vw - 40px), (max-width: 900px) 45vw, 380px" /></div>
                 <div className="product-card-content">
                   <h3>{product.name}</h3>
@@ -41,10 +41,11 @@ export default function Home() {
       </section>
       <section className="about-section" id="about" aria-labelledby="about-title">
         <div className="site-container about-inner">
-          <div className="about-identity">
+          <div className="about-identity" data-reveal>
             <p className="eyebrow">About us</p>
+            <div className="experience-mark"><span className="experience-number">30<span>years</span></span><p>Of experience in<br />the textile industry.</p></div>
           </div>
-          <div>
+          <div data-reveal>
             <h2 id="about-title">Industry knowledge.<br />Personal commitment.</h2>
             <p>With 30 years of experience in the textile industry, we support businesses across production, maintenance, servicing, and troubleshooting.</p>
             <p>Our aim is to supply quality products backed by practical technical consultancy, helping customers find solutions that meet their operational needs.</p>
@@ -54,7 +55,7 @@ export default function Home() {
                 { name: "Mr. Sanjay Mhetar", image: "sanjay_mhetar.jpg" },
                 { name: "Mr. Vipul Vanashetti", image: "vipul_vanashetti.jpg" },
               ].map((person) => (
-                <figure className="team-member" key={person.image}>
+                <figure className="team-member" key={person.image} data-reveal>
                   <Image src={`/media/team/${person.image}`} alt={person.name} width={1200} height={1500} sizes="(max-width: 480px) calc(100vw - 40px), (max-width: 760px) 45vw, 300px" />
                   <figcaption>{person.name}</figcaption>
                 </figure>
