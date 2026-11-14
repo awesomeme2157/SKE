@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const navigation = [
@@ -22,8 +23,7 @@ export function SiteHeader() {
     }}>
       <div className="site-container header-inner">
         <Link href="/#home" className="brand" onClick={() => setMenuOpen(false)} aria-label="Shree Krishnna Enterprises home">
-          <span className="brand-mark" aria-hidden="true">SKE<span>.</span></span>
-          <span className="brand-name">Shree Krishnna<span>Enterprises</span></span>
+          <span className="brand-logo"><Image src="/media/branding/ske_logo.jpg" alt="Shree Krishnna Enterprises — Working Together" width={1920} height={1920} sizes="(max-width: 760px) 180px, 240px" loading="eager" /></span>
         </Link>
         <button id="menu-toggle" type="button" className="menu-toggle" aria-expanded={menuOpen} aria-controls="main-navigation" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? "Close menu" : "Menu"}

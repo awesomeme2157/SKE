@@ -1,0 +1,16 @@
+export const products = [
+  { name: "SKE Fogging Systems", image: "ske_fogging_logo.jpg", description: "High-pressure fogging systems for textile facilities." },
+  { name: "SRM Technologies", image: "srm_logo.jpg", description: "Compact system spares, lattice aprons, and monitoring systems." },
+  { name: "Rotorcraft", image: "rotorcraft_logo.jpg", description: "Green Compact mechanical yarn compact systems." },
+  { name: "Jumac", image: "jumac_logo.jpg", description: "Sliver cans and accessories for textile material handling." },
+  { name: "Skaat", image: "skaat_logo.jpg", description: "Fancy yarn attachments and yarn technology." },
+  { name: "Sagotharen", image: "sagotharen_logo.jpg", description: "Spindle tapes and textile accessories." },
+  { name: "Saurer", image: "saurer_logo.jpg", description: "Drafting systems, spindles, and textile accessories." },
+  { name: "Wishork & Brujas", image: "wishark_brujas_logo.jpg", description: "Card clothing for textile production." },
+  { name: "JR Electronics & Services", image: "jrs_logo.jpg", description: "Electrical and electronic equipment sales and service." },
+  { name: "Kanai", image: "kanai_logo.jpg", description: "Rings and travellers for textile machinery." },
+  { name: "AGMA", image: "agma_logo.jpg", description: "Cradles and textile machinery components." },
+  { name: "Basant Fibertek", image: "basant_fibertek_logo.jpg", description: "Pinned products for textile processing." },
+  { name: "Fiberplus", image: "fiberplus_logo.jpg", description: "Contact our team for product information and availability." },
+  { name: "White Plaast", image: "white_plaast_logo.jpg", description: "Contact our team for product information and availability." },
+];
