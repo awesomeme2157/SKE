@@ -1,11 +1,12 @@
 import { ContactForm } from "@/components/contact-form";
 import { BannerGallery } from "@/components/banner-gallery";
-import { products } from "@/data/products";
+import { ProductCatalogue } from "@/components/product-catalogue";
+import { EnquiryProvider } from "@/components/enquiry-provider";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <>
+    <EnquiryProvider>
       <section className="hero" id="home" aria-labelledby="hero-title">
         <div className="site-container hero-layout">
           <div className="hero-copy">
@@ -19,26 +20,7 @@ export default function Home() {
           <BannerGallery />
         </div>
       </section>
-      <section className="products-section" id="products" aria-labelledby="products-title">
-        <div className="site-container">
-          <div className="section-heading" data-reveal>
-            <p className="eyebrow">What we offer</p>
-            <h2 id="products-title">Solutions for the textile industry.</h2>
-          </div>
-          <div className="product-grid">
-            {products.map((product) => (
-              <article key={product.image} className="product-card" data-reveal>
-                <div className="product-image"><Image src={`/media/products/${product.image}`} alt={`${product.name} brand and product artwork`} width={1920} height={1920} sizes="(max-width: 540px) calc(100vw - 40px), (max-width: 900px) 45vw, 380px" /></div>
-                <div className="product-card-content">
-                  <h3>{product.name}</h3>
-                  <p>{product.description}</p>
-                  <a className="product-enquiry" href="#contact" aria-label={`Enquire about ${product.name}`}>Enquire <span aria-hidden="true">↗</span></a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProductCatalogue />
       <section className="about-section" id="about" aria-labelledby="about-title">
         <div className="site-container about-inner">
           <div className="about-identity" data-reveal>
@@ -65,6 +47,6 @@ export default function Home() {
         </div>
       </section>
       <ContactForm />
-    </>
+    </EnquiryProvider>
   );
 }

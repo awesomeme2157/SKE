@@ -2,6 +2,8 @@
 
 import { useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import { ENQUIRY_ERROR_MESSAGE, readEnquiryResponse } from "@/lib/enquiry-response";
+import { useEnquiry } from "@/components/enquiry-provider";
+import { products } from "@/data/products";
 
 // Keep the server-rendered form disabled until React attaches its handlers.
 const subscribe = () => () => {};
@@ -9,6 +11,7 @@ const getClientSnapshot = () => true;
 const getServerSnapshot = () => false;
 
 export function ContactForm() {
+  const { selectedProduct, selectProduct } = useEnquiry();
   const ready = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
   const submitting = useRef(false);
   const [pending, setPending] = useState(false);
@@ -36,6 +39,7 @@ export function ContactForm() {
       }
       setStatus({ type: "success", message: "Thank you. Your enquiry has been sent to our team." });
       form.reset();
+      selectProduct("");
     } catch {
       setStatus({ type: "error", message: ENQUIRY_ERROR_MESSAGE });
     } finally {
@@ -64,6 +68,7 @@ export function ContactForm() {
               <label htmlFor="enquiry-company">Company name <span>(optional)</span><input id="enquiry-company" name="company" autoComplete="organization" placeholder="Your company" maxLength={150} /></label>
               <label htmlFor="enquiry-email">Email *<input id="enquiry-email" name="email" type="email" autoComplete="email" placeholder="you@company.com" required maxLength={254} /></label>
               <label htmlFor="enquiry-phone">Mobile <span>(optional)</span><input id="enquiry-phone" name="phone" type="tel" autoComplete="tel" placeholder="Your mobile number" maxLength={30} /></label>
+              <label className="field-full" htmlFor="enquiry-product">Product or service <span>(optional)</span><select id="enquiry-product" name="product" value={selectedProduct} onChange={(event) => selectProduct(event.target.value)}><option value="">General enquiry / help me choose</option>{products.map((product) => <option key={product.name} value={product.name}>{product.name}</option>)}</select></label>
               <label className="field-full" htmlFor="enquiry-message">Message *<textarea id="enquiry-message" name="message" placeholder="Tell us about the product or support you’re looking for…" required rows={5} maxLength={3000} /></label>
               <div className="honeypot" aria-hidden="true">
                 <label htmlFor="enquiry-website">Leave this field empty<input id="enquiry-website" name="website" tabIndex={-1} autoComplete="off" /></label>

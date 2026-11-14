@@ -1,3 +1,5 @@
+import { products } from "@/data/products";
+
 const unavailable = "We couldn’t send your enquiry. Please email skesanjay9@gmail.com or call +91 98815 52345.";
 
 export async function POST(request: Request) {
@@ -33,7 +35,7 @@ export async function POST(request: Request) {
     return Response.json({ error: "Please check your enquiry and try again." }, { status: 400 });
   }
 
-  const limits = { name: 100, company: 150, email: 254, phone: 30, message: 3000, website: 200 };
+  const limits = { name: 100, company: 150, email: 254, phone: 30, product: 150, message: 3000, website: 200 };
   const fields: Record<string, string> = {};
   for (const [key, maxLength] of Object.entries(limits)) {
     const value = data[key] ?? "";
@@ -43,6 +45,9 @@ export async function POST(request: Request) {
     fields[key] = value.trim();
   }
   if (fields.website) return Response.json({ error: "Unable to submit this enquiry." }, { status: 400 });
+  if (fields.product && !products.some((product) => product.name === fields.product)) {
+    return Response.json({ error: "Please choose a product from the list or select General enquiry." }, { status: 400 });
+  }
   if (!fields.name || !fields.message || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
     return Response.json({ error: "Please enter your name, a valid email address, and a message." }, { status: 400 });
   }
@@ -61,7 +66,7 @@ export async function POST(request: Request) {
         to: [to],
         reply_to: fields.email,
         subject: "New website enquiry — Shree Krishnna Enterprises",
-        text: `Name: ${fields.name}\nCompany: ${fields.company || "Not provided"}\nEmail: ${fields.email}\nPhone: ${fields.phone || "Not provided"}\n\nMessage:\n${fields.message}`,
+        text: `Name: ${fields.name}\nCompany: ${fields.company || "Not provided"}\nEmail: ${fields.email}\nPhone: ${fields.phone || "Not provided"}\nProduct / service: ${fields.product || "General enquiry"}\n\nMessage:\n${fields.message}`,
       }),
       signal: AbortSignal.timeout(10000),
     });

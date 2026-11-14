@@ -6,6 +6,7 @@ const validationMessages = new Set([
   "Please check your enquiry and try again.",
   "Please check the length and format of your enquiry.",
   "Please enter your name, a valid email address, and a message.",
+  "Please choose a product from the list or select General enquiry.",
 ]);
 
 type EnquiryResult = { success: true } | { success: false; message: string };
