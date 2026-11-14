@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { products, type ProductCategory } from "@/data/products";
 import { useEnquiry } from "@/components/enquiry-provider";
 
@@ -10,7 +10,43 @@ const categories: ("All products" | ProductCategory)[] = ["All products", "Syste
 export function ProductCatalogue() {
   const [category, setCategory] = useState<(typeof categories)[number]>("All products");
   const { selectProduct } = useEnquiry();
+  const gridRef = useRef<HTMLDivElement>(null);
   const visibleCount = products.filter((product) => category === "All products" || category === product.category).length;
+
+  useEffect(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    let disposed = false;
+    let width = -1;
+
+    function matchCardHeights() {
+      if (disposed || !grid) return;
+      // Measure natural heights without the previous minimum or row stretching.
+      grid.classList.add("is-measuring");
+      const cards = grid.querySelectorAll<HTMLElement>(".product-card:not([hidden]):not(:has(.product-details[open]))");
+      const height = Math.max(0, ...Array.from(cards, (card) => card.offsetHeight));
+      grid.style.setProperty("--product-card-height", `${height}px`);
+      grid.classList.remove("is-measuring");
+    }
+
+    matchCardHeights();
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry.contentRect.width !== width) {
+        width = entry.contentRect.width;
+        matchCardHeights();
+      }
+    });
+    observer.observe(grid);
+    grid.addEventListener("toggle", matchCardHeights, true);
+    document.fonts.addEventListener("loadingdone", matchCardHeights);
+    void document.fonts.ready.then(matchCardHeights);
+    return () => {
+      disposed = true;
+      observer.disconnect();
+      grid.removeEventListener("toggle", matchCardHeights, true);
+      document.fonts.removeEventListener("loadingdone", matchCardHeights);
+    };
+  }, [category]);
 
   return (
     <section className="products-section" id="products" aria-labelledby="products-title">
@@ -25,7 +61,7 @@ export function ProductCatalogue() {
           </div>
           <p className="catalogue-count" role="status" aria-atomic="true">{visibleCount} {visibleCount === 1 ? "brand" : "brands"}</p>
         </div>
-        <div className="product-grid">
+        <div className="product-grid" ref={gridRef}>
           {products.map((product) => (
             <article key={product.image} className="product-card" hidden={category !== "All products" && category !== product.category} data-reveal>
               <div className="product-image"><Image src={`/media/products/${product.image}`} alt={`${product.name} brand and product artwork`} width={1920} height={1920} sizes="(max-width: 540px) calc(100vw - 40px), (max-width: 900px) 90vw, 560px" /></div>
@@ -39,7 +75,6 @@ export function ProductCatalogue() {
                       <div><h4>Product range</h4><ul>{product.range.map((item) => <li key={item}>{item}</li>)}</ul></div>
                       <div><h4>Applications</h4><ul>{product.applications.map((item) => <li key={item}>{item}</li>)}</ul></div>
                     </div>
-                    {product.specifications && <div className="product-specifications"><table><caption>Manufacturer reference — polyester spindle tapes</caption><tbody>{product.specifications.map((specification) => <tr key={specification.label}><th scope="row">{specification.label}</th><td>{specification.value}</td></tr>)}</tbody></table></div>}
                     <p className="product-availability">Contact our team to confirm the suitable model, specifications, and availability.</p>
                   </div>
                 </details>
