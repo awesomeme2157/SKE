@@ -50,7 +50,7 @@ export function ContactForm() {
         <div className="contact-heading">
           <p className="eyebrow">Let’s work together</p>
           <h2 id="contact-title">Get in touch.</h2>
-          <p>Let’s find the right solution for your mill. Send an enquiry or speak with our team directly.</p>
+          <p>Let’s find the right solution for your textile business. Send an enquiry or speak with our team directly.</p>
         </div>
         <div className="contact-inner">
           <form className="enquiry-form" method="post" action="/api/enquiry" onSubmit={handleSubmit} aria-label="Product and service enquiry" aria-busy={pending}>

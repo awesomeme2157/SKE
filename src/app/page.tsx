@@ -8,7 +8,7 @@ export default function Home() {
           <p className="eyebrow"><span className="accent-line" /> Shree Krishnna Enterprises</p>
           <h1 id="hero-title">Working together.<br /><span>Supporting textile excellence.</span></h1>
           <div className="hero-bottom">
-            <p>Textile machinery, spinning accessories, and technical expertise to support your mill’s everyday needs.</p>
+            <p>Textile machinery, accessories, and technical expertise to support your business’s everyday needs.</p>
             <a className="button-primary" href="#products">Explore our products <span aria-hidden="true">↗</span></a>
           </div>
         </div>
@@ -17,11 +17,11 @@ export default function Home() {
         <div className="site-container">
           <div className="section-heading">
             <p className="eyebrow">What we offer</p>
-            <h2 id="products-title">Solutions for the spinning industry.</h2>
+            <h2 id="products-title">Solutions for the textile industry.</h2>
           </div>
           <div className="product-grid">
             {[
-              { title: "Textile machinery", description: "Fogging systems, compact spinning systems, and fancy yarn attachments." },
+              { title: "Textile machinery", description: "Fogging systems and fancy yarn attachments for textile production." },
               { title: "Spares & accessories", description: "Sliver cans, cots, aprons, spindle tapes, rings, and travellers." },
               { title: "Technical consultancy", description: "Support for production, maintenance, servicing, and troubleshooting." },
             ].map((product, index) => (
@@ -39,7 +39,7 @@ export default function Home() {
           <p className="eyebrow">About us</p>
           <div>
             <h2 id="about-title">Industry knowledge.<br />Personal commitment.</h2>
-            <p>We bring experience across textile production, maintenance, and servicing, connecting spinning mills with quality products and practical technical guidance.</p>
+            <p>We bring experience across textile production, maintenance, and servicing, connecting textile businesses with quality products and practical technical guidance.</p>
             <a className="text-link" href="#contact">Talk to our team <span aria-hidden="true">↗</span></a>
           </div>
         </div>

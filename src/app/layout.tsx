@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Shree Krishnna Enterprises",
-  description: "Textile machinery, spinning accessories, and technical consultancy from Shree Krishnna Enterprises.",
+  description: "Textile machinery, accessories, and technical consultancy from Shree Krishnna Enterprises.",
   robots: { index: false, follow: false },
 };
 
