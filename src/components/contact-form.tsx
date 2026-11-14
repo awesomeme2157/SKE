@@ -87,7 +87,7 @@ export function ContactForm() {
             <section className="office-details" aria-labelledby="head-office-title" data-reveal>
               <h3 id="head-office-title">Head Office</h3>
               <address>
-                <p>“Radha-Krishna”, Koshti Wada,<br />A/P Kabnur, Ichalkaranji – 416115.<br />Dist. Kolhapur, Maharashtra, India.</p>
+                <p>Radha Krishnna Koshti Wada,<br />A/P Kabnur, Ichalkaranji – 416115.<br />Dist. Kolhapur, Maharashtra, India.</p>
                 <div className="office-links">
                   <p><span>Email</span><a href="mailto:slmkabin@yahoo.co.in">slmkabin@yahoo.co.in</a><a href="mailto:skesanjay9@gmail.com">skesanjay9@gmail.com</a></p>
                   <p><span>Mobile</span><a href="tel:+919881552345">(+91) 9881552345</a><a href="tel:+919456085555">(+91) 9456085555</a></p>

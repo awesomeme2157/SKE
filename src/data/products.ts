@@ -65,7 +65,7 @@ export const products: Product[] = [
     manufacturerUrl: "https://saurer.com/en",
   },
   {
-    name: "Wishork & Brujas", image: "wishark_brujas_logo.jpg", category: "Components",
+    name: "Wishark & Brujas", image: "wishark_brujas_logo.jpg", category: "Components",
     description: "Card clothing for textile production.",
     range: ["Card clothing"],
     applications: ["Textile fibre preparation", "Card clothing replacement"],

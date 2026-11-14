@@ -10,7 +10,7 @@ export default function Home() {
       <section className="hero" id="home" aria-labelledby="hero-title">
         <div className="site-container hero-layout">
           <div className="hero-copy">
-            <p className="eyebrow"><span className="accent-line" /> Shree Krishnna Enterprises</p>
+            <p className="eyebrow hero-company-name"><span className="accent-line" /> Shree Krishnna Enterprises</p>
             <h1 id="hero-title">Working together.<br /><span>Supporting textile excellence.</span></h1>
             <div className="hero-bottom">
               <p>Textile machinery, accessories, and technical expertise to support your business’s everyday needs.</p>
