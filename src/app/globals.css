@@ -203,7 +203,28 @@ h2 { font-size: clamp(32px, 3.46vw, 44px); line-height: 1.2; font-weight: 600; l
 .honeypot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .form-status { margin-top: 24px; padding: 16px; font-size: 16px; line-height: 1.7; border-left: 3px solid; }
 .form-status.error { border-color: #a43623; color: #82291a; background: #fff1ed; }
-.form-status.success { border-color: #276348; color: #22553e; background: #eaf5ee; }
+.enquiry-success-dialog { margin: auto; width: min(440px, calc(100% - 40px)); max-height: calc(100dvh - 40px); padding: 0; border: 1px solid #e0e7e2; border-radius: 20px; color: #172c3b; background: #fff; box-shadow: 0 30px 90px #07182740; overflow-y: auto; }
+.enquiry-success-dialog[open] { animation: enquiry-modal-enter .35s var(--ease-out) both; }
+.enquiry-success-dialog::backdrop { background: #0b193bb3; backdrop-filter: blur(4px); animation: enquiry-backdrop-enter .25s ease both; }
+.enquiry-success { position: relative; display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 56px 28px 32px; text-align: center; }
+.enquiry-success-close { position: absolute; top: 12px; right: 12px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; font-size: 26px; line-height: 1; cursor: pointer; }
+.enquiry-success-close:hover { background: #f0f3f1; }
+.enquiry-success-icon { display: block; width: 88px; height: 88px; flex-shrink: 0; border-radius: 50%; background: #e5f5eb; animation: enquiry-success-pop .55s var(--ease-out) both; }
+.enquiry-success-icon svg { display: block; width: 100%; height: 100%; stroke: #276348; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.enquiry-success-ring, .enquiry-success-check { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.enquiry-success-ring { animation: enquiry-success-draw .55s ease both; }
+.enquiry-success-check { stroke-width: 3.5; animation: enquiry-success-draw .35s ease .35s both; }
+.enquiry-success-copy { min-width: 0; animation: enquiry-success-enter .4s ease .15s both; }
+.enquiry-success-copy h3 { font-size: 28px; font-weight: 600; line-height: 1.3; }
+.enquiry-success-copy p { margin-top: 12px; font-size: 16px; line-height: 1.7; color: #5c686f; }
+.enquiry-success-done { width: 100%; justify-content: center; cursor: pointer; }
+.form-submit .enquiry-spinner { width: 18px; height: 18px; flex-shrink: 0; border: 2px solid #ffffff55; border-top-color: #fff; border-radius: 50%; animation: enquiry-sending-spin .8s linear infinite; }
+@keyframes enquiry-success-enter { from { opacity: 0; translate: 0 10px; } to { opacity: 1; translate: 0 0; } }
+@keyframes enquiry-success-pop { 0% { scale: .75; } 65% { scale: 1.08; } 100% { scale: 1; } }
+@keyframes enquiry-success-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes enquiry-sending-spin { to { rotate: 360deg; } }
+@keyframes enquiry-modal-enter { from { opacity: 0; transform: translateY(16px) scale(.94); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes enquiry-backdrop-enter { from { opacity: 0; } to { opacity: 1; } }
 @media (max-width: 760px) {
   .contact-section { padding: 48px 0; }
   .contact-heading { margin-bottom: 32px; }
@@ -242,6 +263,8 @@ h2 { font-size: clamp(32px, 3.46vw, 44px); line-height: 1.2; font-weight: 600; l
   .about-inner .experience-mark p { margin: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .enquiry-success-dialog[open], .enquiry-success-dialog::backdrop { animation: none; }
+  .enquiry-success, .enquiry-success-icon, .enquiry-success-ring, .enquiry-success-check, .enquiry-success-copy, .form-submit .enquiry-spinner { animation: none; }
   html { scroll-behavior: auto; }
   [data-reveal], .product-card, .banner-slide, .site-header, .button-primary, .main-navigation a, .main-navigation a::after, .button-primary > span, .product-enquiry > span, .text-link > span, .banner-buttons button, .banner-selectors button span, .form-fields input, .form-fields textarea, .form-fields select, .category-filters button, .product-enquiry { transition: none !important; }
   .reveal-pending { opacity: 1; translate: none; }

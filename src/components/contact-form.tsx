@@ -4,6 +4,7 @@ import { useRef, useState, useSyncExternalStore, type FormEvent } from "react";
 import { ENQUIRY_ERROR_MESSAGE, readEnquiryResponse } from "@/lib/enquiry-response";
 import { useEnquiry } from "@/components/enquiry-provider";
 import { products } from "@/data/products";
+import { EnquirySuccess } from "@/components/enquiry-success";
 
 // Keep the server-rendered form disabled until React attaches its handlers.
 const subscribe = () => () => {};
@@ -74,12 +75,12 @@ export function ContactForm() {
                 <label htmlFor="enquiry-website">Leave this field empty<input id="enquiry-website" name="website" tabIndex={-1} autoComplete="off" /></label>
               </div>
               <div className="field-full form-submit">
-                <button className="button-primary" type="submit" disabled={!ready || pending}>{pending ? "Sending…" : "Send Enquiry"}<span aria-hidden="true">↗</span></button>
+                <button className="button-primary" type="submit" disabled={!ready || pending}>{pending && <span className="enquiry-spinner" aria-hidden="true" />}{pending ? "Sending…" : "Send Enquiry"}{!pending && <span aria-hidden="true">↗</span>}</button>
                 <p>We’ll use your details to respond to your enquiry.</p>
               </div>
             </fieldset>
             <div aria-live="polite" aria-atomic="true">
-              {status && <p className={`form-status ${status.type}`} role={status.type === "error" ? "alert" : "status"}>{status.message}</p>}
+              {status?.type === "error" && <p className="form-status error" role="alert">{status.message}</p>}
             </div>
             <noscript><p>Please enable JavaScript to use this form, email <a href="mailto:skesanjay9@gmail.com">skesanjay9@gmail.com</a>, or call <a href="tel:+919881552345">+91 98815 52345</a>.</p></noscript>
           </form>
@@ -107,6 +108,7 @@ export function ContactForm() {
           </div>
         </div>
       </div>
+      {status?.type === "success" && <EnquirySuccess message={status.message} onClose={() => setStatus((current) => current?.type === "success" ? null : current)} />}
     </section>
   );
 }
