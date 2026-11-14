@@ -1,7 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+
+const motionQuery = "(prefers-reduced-motion: reduce)";
+const subscribeMotion = (notify: () => void) => {
+  const media = window.matchMedia(motionQuery);
+  media.addEventListener("change", notify);
+  return () => media.removeEventListener("change", notify);
+};
+const getReducedMotion = () => window.matchMedia(motionQuery).matches;
+const getServerReducedMotion = () => true;
 
 const banners = [
   { src: "banner_3.jpg", alt: "Textile production machinery and control systems", caption: "Textile machinery" },
@@ -12,10 +21,37 @@ const banners = [
 
 export function BannerGallery() {
   const [selected, setSelected] = useState(0);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [autoplay, setAutoplay] = useState<boolean | null>(null);
+  const reducedMotion = useSyncExternalStore(subscribeMotion, getReducedMotion, getServerReducedMotion);
+  const playing = autoplay ?? !reducedMotion;
+  const rotating = playing && !hovered && !focused;
   const banner = banners[selected];
 
+  useEffect(() => {
+    if (!rotating) return;
+    let timer: ReturnType<typeof setTimeout>;
+    function schedule() {
+      clearTimeout(timer);
+      if (!document.hidden) {
+        timer = setTimeout(() => setSelected((current) => (current + 1) % banners.length), 3000);
+      }
+    }
+    schedule();
+    document.addEventListener("visibilitychange", schedule);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("visibilitychange", schedule);
+    };
+  }, [rotating, selected]);
+
   return (
-    <div className="banner-gallery" role="region" aria-roledescription="carousel" aria-label="Textile products and systems">
+    <div className="banner-gallery" role="region" aria-roledescription="carousel" aria-label="Textile products and systems"
+      onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
+      onFocusCapture={() => setFocused(true)} onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false);
+      }}>
       <div className="banner-image">
         {banners.map((item, index) => (
           <div key={item.src} className={`banner-slide${selected === index ? " is-active" : ""}`} aria-hidden={selected !== index}>
@@ -24,10 +60,11 @@ export function BannerGallery() {
         ))}
       </div>
       <div className="banner-controls">
-        <p aria-live="polite" aria-atomic="true"><span className="banner-count">0{selected + 1} / 04</span>{banner.caption}</p>
+        <p aria-live={rotating ? "off" : "polite"} aria-atomic="true"><span className="banner-count">0{selected + 1} / 04</span>{banner.caption}</p>
         <div className="banner-buttons">
-          <button type="button" aria-label="Previous banner" onClick={() => setSelected((selected + banners.length - 1) % banners.length)}>←</button>
-          <button type="button" aria-label="Next banner" onClick={() => setSelected((selected + 1) % banners.length)}>→</button>
+          <button type="button" aria-label={playing ? "Pause slideshow" : "Play slideshow"} onClick={() => setAutoplay(!playing)}><span aria-hidden="true">{playing ? "Ⅱ" : "▶"}</span></button>
+          <button type="button" aria-label="Previous banner" onClick={() => setSelected((current) => (current + banners.length - 1) % banners.length)}>←</button>
+          <button type="button" aria-label="Next banner" onClick={() => setSelected((current) => (current + 1) % banners.length)}>→</button>
         </div>
       </div>
       <div className="banner-selectors" aria-label="Choose a banner">
